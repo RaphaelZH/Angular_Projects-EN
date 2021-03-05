@@ -1,4 +1,4 @@
-import { Component, /* OnInit */ } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -20,6 +20,7 @@ export class AppComponent {
     this.maxDate = new Date();
     this.maxDate.setFullYear(this.maxDate.getFullYear() - 18);
   }
+
   onSubmit(form: NgForm) {
     console.log(form);
   }
