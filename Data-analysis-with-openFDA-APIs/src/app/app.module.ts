@@ -8,6 +8,8 @@ import { MaterialModule } from './material.module';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+import { FormsModule }   from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -17,6 +19,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
