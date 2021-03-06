@@ -13,9 +13,17 @@ import { NgForm } from '@angular/forms';
 })
 export class DrugsFdaComponent implements OnInit {
 
-  constructor() { }
+  @Output() adverse_events_initial = new EventEmitter<void>();
+  drugs_fda: DrugsFda[] = [];
+
+  constructor(private drugs_fda_service: DrugsFdaService) { }
 
   ngOnInit(): void {
+    this.drugs_fda = this.drugs_fda_service.getAvailableDrugsFda();
   }
 
+  onSubmit(form: NgForm) {
+    console.log(form);
+  }
 }
+

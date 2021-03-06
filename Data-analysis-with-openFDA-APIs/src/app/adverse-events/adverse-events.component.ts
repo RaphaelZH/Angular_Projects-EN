@@ -12,16 +12,11 @@ import { NgForm } from '@angular/forms';
 })
 
 export class AdverseEventsComponent implements OnInit {
-  @Output() adverse_events_initial = new EventEmitter<void>();
-  adverse_events: AdverseEvents[] = [];
 
-  constructor(private adverse_events_service: AdverseEventsService) { }
 
-  ngOnInit(): void {
-    this.adverse_events = this.adverse_events_service.getAvailableAdverseEvents();
-  }
+constructor() { }
 
-  onSubmit(form: NgForm) {
-    console.log(form);
-  }
+ngOnInit(): void {
+}
+
 }
