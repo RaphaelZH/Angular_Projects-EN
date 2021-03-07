@@ -7,20 +7,20 @@ import { FormsModule }   from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 
+import { NgxEchartsModule } from 'ngx-echarts';
+
 import { MaterialModule } from './material.module';
 
 import { AppComponent } from './app.component';
 import { AdverseEventsComponent } from './adverse-events/adverse-events.component';
-import { DrugsFdaComponent } from './drugs-fda/drugs-fda.component';
 
-import { AdverseEventsService } from './drug_api_endpoints/adverse_events.service';
-import { DrugsFdaService } from './drug_api_endpoints/drugs_fda.service';
+/* import { AdverseEventsService } from './drug_api_endpoints/adverse_events.service';
+import { DrugsFdaService } from './drug_api_endpoints/drugs_fda.service'; */
 
 @NgModule({
   declarations: [
     AppComponent,
     AdverseEventsComponent,
-    DrugsFdaComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,8 +31,8 @@ import { DrugsFdaService } from './drug_api_endpoints/drugs_fda.service';
     MaterialModule,
   ],
   providers: [
-    AdverseEventsService,
-    DrugsFdaService,
+    /* AdverseEventsService,
+    DrugsFdaService, */
   ],
   bootstrap: [
     AppComponent,

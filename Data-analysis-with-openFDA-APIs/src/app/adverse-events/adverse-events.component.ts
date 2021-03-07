@@ -3,7 +3,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { /* BehaviorSubject, combineLatest */ Observable, EMPTY } from 'rxjs';
-import { expand, scan, share, debounceTime, map } from 'rxjs/operators';
+import { expand, scan, share, map, debounceTime } from 'rxjs/operators';
 /*
   https://rxjs.dev/api/index
     Observable: A representation of any set of values over any amount of time. This is the most basic building block of RxJS.
@@ -12,17 +12,16 @@ import { expand, scan, share, debounceTime, map } from 'rxjs/operators';
   https://rxjs.dev/api/operators
     expand: Recursively projects each source value to an Observable which is merged in the output Observable.
     scan: Applies an accumulator function over the source Observable, and returns each intermediate result, with an optional seed value.
-    share: Returns a new Observable that multicasts (shares) the original Observable.
-*/
+    share: Returns a new Observable that multicasts (shares) the original Observable. As long as there is at least one Subscriber this Observable will be subscribed and emitting data. When all subscribers have unsubscribed it will unsubscribe from the source Observable. Because the Observable is multicasting it makes the stream hot.
+    map: Applies a given project function to each value emitted by the source Observable, and emits the resulting values as an Observable.
+    */
 
 import { flatten, uniq } from 'lodash';
 
 import {
-  AdverseEvents,
   Results_1,
   ApiResponses_1,
 } from '../drug_api_endpoints/adverse_events.model';
-import { AdverseEventsService } from '../drug_api_endpoints/adverse_events.service';
 
 @Component({
   selector: 'app-adverse-events',
@@ -36,6 +35,12 @@ export class AdverseEventsComponent implements OnInit {
   time_2 = '20210306';
 
   results_1$: Observable<Results_1[]>;
+  results_1_time$: Observable<any[]>;
+  results_1_count$: Observable<any[]>;
+
+  results_1_month$: Observable<any[]>;
+  results_1_time_month$: Observable<any[]>;
+  results_1_count_month$: Observable<any[]>;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -59,8 +64,23 @@ export class AdverseEventsComponent implements OnInit {
         }),
         scan((acc, data) => {
           return [...acc, ...data.results];
-        }, [])
-        /* share() */
+        }, []),
+        share()
       );
+
+    this.results_1_time$ = this.results_1$.pipe(
+      map((data) => {
+        return data.map((data) => data.time );
+      }),
+      share()
+    );
+
+    this.results_1_count$ = this.results_1$.pipe(
+      map((data) => {
+        return data.map((data) => data.count);
+      }),
+      share()
+    );
+
   }
 }
