@@ -31,7 +31,7 @@ import { AdverseEventsService } from '../drug_api_endpoints/adverse_events.servi
 })
 export class AdverseEventsComponent implements OnInit {
   baseURL = 'https://api.fda.gov/drug/event.json';
-
+  api_key = null;
   time_1 = '20040101';
   time_2 = '20210306';
 
@@ -40,9 +40,15 @@ export class AdverseEventsComponent implements OnInit {
   constructor(private httpClient: HttpClient) {}
 
   ngOnInit() {
-    const params = new HttpParams()
+    let params = new HttpParams()
       .set('search', `receivedate:[${this.time_1}+TO+${this.time_2}]`)
       .set('count', 'receivedate');
+    if (this.api_key != null) {
+      params = params.set('api_key', this.api_key);
+    } else {
+      params = params;
+    }
+
     this.results_1$ = this.httpClient
       .get<ApiResponses_1>(this.baseURL, { params })
       .pipe(
@@ -53,8 +59,8 @@ export class AdverseEventsComponent implements OnInit {
         }),
         scan((acc, data) => {
           return [...acc, ...data.results];
-        }, []),
-        share()
+        }, [])
+        /* share() */
       );
   }
 }
