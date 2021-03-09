@@ -38,9 +38,7 @@ export class AdverseEventsComponent implements OnInit {
   results_1_time$: Observable<any[]>;
   results_1_count$: Observable<any[]>;
 
-  results_1_month$: Observable<any[]>;
-  results_1_time_month$: Observable<any[]>;
-  results_1_count_month$: Observable<any[]>;
+
 
   constructor(private httpClient: HttpClient) {}
 
