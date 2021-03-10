@@ -13,7 +13,7 @@ import { expand, scan, share } from 'rxjs/operators';
     share: Returns a new Observable that multicasts (shares) the original Observable. As long as there is at least one Subscriber this Observable will be subscribed and emitting data. When all subscribers have unsubscribed it will unsubscribe from the source Observable. Because the Observable is multicasting it makes the stream hot.
 */
 
-import { ApiResponses_1 } from './adverse_events.model';
+import { ApiResponses_1, Results_1 } from './adverse_events.model';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +25,7 @@ export class AdverseEventsService {
   time_2 = '20210306';
   constructor(private httpClient: HttpClient) {}
 
-  loadResults_1(): Observable<ApiResponses_1[]> {
+  loadResults_1(): Observable<Results_1[]> {
     let params = new HttpParams()
       .set('search', `receivedate:[${this.time_1}+TO+${this.time_2}]`)
       .set('count', 'patient.reaction.reactionmeddrapt.exact');
