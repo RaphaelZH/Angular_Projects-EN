@@ -1,5 +1,6 @@
+import { Component, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+
 import { Observable, EMPTY } from 'rxjs';
 import { expand, scan, share } from 'rxjs/operators';
 /*
@@ -15,22 +16,26 @@ import { expand, scan, share } from 'rxjs/operators';
 
 import { ApiResponses_1, Results_1 } from './adverse_events.model';
 
+@Component({
+  selector: 'adverse_events_service',
+  templateUrl: './adverse_events.service.html',
+})
+
 @Injectable({
   providedIn: 'root',
 })
 export class AdverseEventsService {
   baseURL = 'https://api.fda.gov/drug/event.json';
-  api_key = null;
-  time_1 = '20040101';
-  time_2 = '20210306';
+  
   constructor(private httpClient: HttpClient) {}
 
-  loadResults_1(): Observable<Results_1[]> {
+  loadResults_1(time_1 = '20040101', 
+  time_2 = '20210306', api_key = null): Observable<Results_1[]> {
     let params = new HttpParams()
-      .set('search', `receivedate:[${this.time_1}+TO+${this.time_2}]`)
+      .set('search', `receivedate:[${time_1}+TO+${time_2}]`)
       .set('count', 'patient.reaction.reactionmeddrapt.exact');
-    if (this.api_key != null) {
-      params = params.set('api_key', this.api_key);
+    if (api_key != null) {
+      params = params.set('api_key', api_key);
     } else {
       params = params;
     }

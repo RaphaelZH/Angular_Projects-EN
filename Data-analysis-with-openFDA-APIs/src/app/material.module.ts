@@ -17,36 +17,34 @@ import { MatCardModule } from '@angular/material/card';
 
 import { MatSelectModule } from '@angular/material/select';
 
-
 import { MatSliderModule } from '@angular/material/slider';
 
 @NgModule({
-    imports: [
-        MatButtonModule,
-        MatIconModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        MatCheckboxModule,
-        MatCardModule,
-        MatSelectModule,
+  imports: [
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCheckboxModule,
+    MatCardModule,
+    MatSelectModule,
 
-        MatSliderModule,
-    ],
-    exports: [
-        MatButtonModule,
-        MatIconModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        MatCheckboxModule,
-        MatCardModule,
-        MatSelectModule,
+    MatSliderModule,
+  ],
+  exports: [
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCheckboxModule,
+    MatCardModule,
+    MatSelectModule,
 
-        MatSliderModule,
-    ]
+    MatSliderModule,
+  ],
 })
-
 export class MaterialModule {}

@@ -8,9 +8,8 @@ describe('AdverseEventsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdverseEventsComponent ]
-    })
-    .compileComponents();
+      declarations: [AdverseEventsComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

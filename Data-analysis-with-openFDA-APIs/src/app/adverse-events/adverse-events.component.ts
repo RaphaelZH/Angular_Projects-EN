@@ -3,7 +3,14 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import { expand, scan, share, map, debounceTime } from 'rxjs/operators';
+import {
+  expand,
+  scan,
+  map,
+  share,
+  shareReplay,
+  debounceTime,
+} from 'rxjs/operators';
 /*
   https://rxjs.dev/api/operators
     map: Applies a given project function to each value emitted by the source Observable, and emits the resulting values as an Observable.
@@ -11,7 +18,6 @@ import { expand, scan, share, map, debounceTime } from 'rxjs/operators';
 
 import { flatten, uniq } from 'lodash';
 
-import { Results_1 } from '../drug_api_endpoints/adverse_events.model';
 import { AdverseEventsService } from '../drug_api_endpoints/adverse_events.service';
 
 @Component({
