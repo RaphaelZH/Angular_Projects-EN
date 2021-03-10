@@ -11,9 +11,10 @@ import { MaterialModule } from './material.module';
 
 import { AppComponent } from './app.component';
 import { AdverseEventsComponent } from './adverse-events/adverse-events.component';
+import { AdverseEventsService } from './drug_api_endpoints/adverse_events.service';
 
 @NgModule({
-  declarations: [AppComponent, AdverseEventsComponent],
+  declarations: [AppComponent, AdverseEventsComponent, AdverseEventsService],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

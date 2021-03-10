@@ -1,5 +1,6 @@
 import { Component, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { NgForm } from '@angular/forms';
 
 import { Observable, EMPTY } from 'rxjs';
 import { expand, scan, share } from 'rxjs/operators';
@@ -19,6 +20,7 @@ import { ApiResponses_1, Results_1 } from './adverse_events.model';
 @Component({
   selector: 'adverse_events_service',
   templateUrl: './adverse_events.service.html',
+  styleUrls: ['./adverse_events.service.css'],
 })
 
 @Injectable({
@@ -53,5 +55,15 @@ export class AdverseEventsService {
         }, []),
         share()
       );
+  }
+  maxDate;
+
+  ngOnInit() {
+    this.maxDate = new Date();
+    this.maxDate.setFullYear(this.maxDate.getFullYear() - 18);
+  }
+
+  onSubmit(form: NgForm) {
+    console.log(form);
   }
 }
