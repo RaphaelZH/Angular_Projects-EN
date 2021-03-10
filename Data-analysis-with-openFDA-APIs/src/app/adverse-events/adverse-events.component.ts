@@ -63,19 +63,19 @@ export class AdverseEventsComponent implements OnInit {
             value: data.count,
           };
         });
-
         return newFormats;
-      })
+      }),
+      share()
     );
   }
 
-  view: any[] = [700, 400];
+  view: any[] = [1280, 640];
   showXAxis = true;
   showYAxis = true;
   gradient = false;
   showLegend = true;
   showXAxisLabel = true;
-  xAxisLabel = "Reaction medical";
+  xAxisLabel = 'Reaction medical';
   showYAxisLabel = true;
-  yAxisLabel = "Number of cases";
+  yAxisLabel = 'Number of cases';
 }
