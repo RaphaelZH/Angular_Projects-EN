@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+
 import { MaterialModule } from './material.module';
 
 import { AppComponent } from './app.component';
@@ -21,6 +23,7 @@ import { AdverseEventsService } from './drug_api_endpoints/adverse_events.servic
     FlexLayoutModule,
     FormsModule,
     HttpClientModule,
+    NgxChartsModule,
     MaterialModule,
   ],
   providers: [],

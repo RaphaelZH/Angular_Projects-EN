@@ -13,12 +13,6 @@ import { MatNativeDateModule } from '@angular/material/core';
 
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
-import { MatCardModule } from '@angular/material/card';
-
-import { MatSelectModule } from '@angular/material/select';
-
-import { MatSliderModule } from '@angular/material/slider';
-
 @NgModule({
   imports: [
     MatButtonModule,
@@ -28,10 +22,6 @@ import { MatSliderModule } from '@angular/material/slider';
     MatDatepickerModule,
     MatNativeDateModule,
     MatCheckboxModule,
-    MatCardModule,
-    MatSelectModule,
-
-    MatSliderModule,
   ],
   exports: [
     MatButtonModule,
@@ -41,10 +31,6 @@ import { MatSliderModule } from '@angular/material/slider';
     MatDatepickerModule,
     MatNativeDateModule,
     MatCheckboxModule,
-    MatCardModule,
-    MatSelectModule,
-
-    MatSliderModule,
   ],
 })
 export class MaterialModule {}

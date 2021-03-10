@@ -1,11 +1,11 @@
 <section>
-  <form
+<!--   <form
     fxLayout="column"
     fxLayoutAlign="center center"
     fxLayoutGap="5px"
     #f="ngForm"
-    (ngSubmit)="loadResults_1()"
-  >
+    (ngSubmit)="onSubmit(f)"
+  > -->
     <form fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="40px">
       <mat-form-field appearance="fill">
         <input
@@ -57,26 +57,20 @@
       </mat-form-field>
     </form>
 
-    <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="40px">
-      <mat-form-field>
+<!--     <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="40px"> -->
+      <!-- <mat-form-field>
         <input
           matInput
-          placeholder="Your email"
+          placeholder="Your api-key"
           ngModel
           name="email"
           email
-          #emailInput="ngModel"
+          #apikeyInput="ngModel"
         />
-        <mat-hint align="end">{{ emailInput.value?.length }} / 6</mat-hint>
-        <mat-error *ngIf="emailInput.hasError('required')"
-          >Field must not be empty.</mat-error
-        >
-        <mat-error *ngIf="!emailInput.hasError('required')"
-          >E-mail is invalid.</mat-error
-        >
-      </mat-form-field>
+        <mat-hint align="end">{{ apikeyInput.value?.length }}</mat-hint>
+      </mat-form-field> -->
 
-      <mat-checkbox ngModel name="agree" required color="primary"
+      <!-- <mat-checkbox ngModel name="agree" required color="primary"
         >Agree to
         <a href="https://open.fda.gov/terms/" target="_blank"
           >terms of service</a
@@ -88,12 +82,14 @@
         type="submit"
         mat-raised-button
         color="primary"
+        [disabled]="f.invalid"
       >
         Submit
       </button>
     </form>
-  </form>
+  </form> -->
 </section>
 <div class="example-events">
-  <div >{{startdate}}</div>
+  <!-- <div>{{startdate}}</div>
+  <div>{{enddate}}</div> -->
 </div>

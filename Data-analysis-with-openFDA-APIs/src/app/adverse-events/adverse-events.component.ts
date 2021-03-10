@@ -27,15 +27,21 @@ import { AdverseEventsService } from '../drug_api_endpoints/adverse_events.servi
 })
 export class AdverseEventsComponent implements OnInit {
   results_1$: Observable<any[]>;
-  results_1_time$: Observable<any[]>;
+  results_1_term$: Observable<any[]>;
   results_1_count$: Observable<any[]>;
+
+  results_1_reform$: Observable<any[]>;
 
   constructor(private adverse_eventsService: AdverseEventsService) {}
 
   ngOnInit() {
+    this.reloadResults();
+  }
+
+  reloadResults() {
     this.results_1$ = this.adverse_eventsService.loadResults_1();
 
-    this.results_1_time$ = this.results_1$.pipe(
+    this.results_1_term$ = this.results_1$.pipe(
       map((data) => {
         return data.map((data) => data.term);
       }),
@@ -48,5 +54,28 @@ export class AdverseEventsComponent implements OnInit {
       }),
       share()
     );
+
+    this.results_1_reform$ = this.results_1$.pipe(
+      map((data) => {
+        let newFormats = data.map((data) => {
+          return {
+            name: data.term,
+            value: data.count,
+          };
+        });
+
+        return newFormats;
+      })
+    );
   }
+
+  view: any[] = [700, 400];
+  showXAxis = true;
+  showYAxis = true;
+  gradient = false;
+  showLegend = true;
+  showXAxisLabel = true;
+  xAxisLabel = "Reaction medical";
+  showYAxisLabel = true;
+  yAxisLabel = "Number of cases";
 }

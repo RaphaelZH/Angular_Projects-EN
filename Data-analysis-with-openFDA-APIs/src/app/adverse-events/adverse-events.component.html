@@ -1,21 +1,29 @@
 <h1>app-adverse-events partie</h1>
 <adverse_events_service></adverse_events_service>
+<table>
+  <thead>
+    <tr>
+      <th>Reaction medical</th>
+      <th>Number of cases</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of results_1$ | async">
+      <th>{{ item.term }}</th>
+      <th>{{ item.count }}</th>
+    </tr>
+  </tbody>
+</table>
+
+<div id="graphe">
+    <div class="row">
+      <ngx-charts-bar-vertical *ngIf="results_1_reform$ | async as chartDatas" [gradient]="gradient" [xAxis]="showXAxis"
+        [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [results]="chartDatas" (select)="onSelect($event)"
+        [view]="[800,300]">
+      </ngx-charts-bar-vertical>
+    </div>
+
 <section>
-  <mat-form-field appearance="fill">
-    <mat-label>Enter a date range</mat-label>
-    <mat-date-range-input [rangePicker]="picker">
-      <input matStartDate placeholder="Start date" />
-      <input matEndDate placeholder="End date" />
-    </mat-date-range-input>
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-date-range-picker #picker></mat-date-range-picker>
-  </mat-form-field>
+  {{ results_1_reform$ | async | json }}
 </section>
-
-
-
-<section>
-  {{ results_1$ | async | json }}
-</section>
-
-

@@ -2,6 +2,8 @@ import { Component, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+
 import { Observable, EMPTY } from 'rxjs';
 import { expand, scan, share } from 'rxjs/operators';
 /*
@@ -22,22 +24,44 @@ import { ApiResponses_1, Results_1 } from './adverse_events.model';
   templateUrl: './adverse_events.service.html',
   styleUrls: ['./adverse_events.service.css'],
 })
-
 @Injectable({
   providedIn: 'root',
 })
 export class AdverseEventsService {
   baseURL = 'https://api.fda.gov/drug/event.json';
-  
+
+  startdate: string;
+  enddate: string;
+  api_key: string = null;
+
+  startDate(event: MatDatepickerInputEvent<Date>) {
+    const year = `${event.value.getFullYear()}`;
+    const month = ('0' + (event.value.getMonth() + 1)).slice(-2);
+    const date = ('0' + event.value.getDate()).slice(-2);
+    this.startdate = `${year}${month}${date}`;
+  }
+
+  endDate(event: MatDatepickerInputEvent<Date>) {
+    const year = `${event.value.getFullYear()}`;
+    const month = ('0' + (event.value.getMonth() + 1)).slice(-2);
+    const date = ('0' + event.value.getDate()).slice(-2);
+    this.enddate = `${year}${month}${date}`;
+  }
+
+  time_1 = '20020202';
+  time_2 = '20101010';
+
   constructor(private httpClient: HttpClient) {}
 
-  loadResults_1(time_1 = '20040101', 
-  time_2 = '20210306', api_key = null): Observable<Results_1[]> {
+  
+
+  //${this.startdate}+TO+${this.enddate}
+  loadResults_1(): Observable<Results_1[]> {
     let params = new HttpParams()
-      .set('search', `receivedate:[${time_1}+TO+${time_2}]`)
+      .set('search', `receivedate:[${this.time_1}+TO+${this.time_2}]`)
       .set('count', 'patient.reaction.reactionmeddrapt.exact');
-    if (api_key != null) {
-      params = params.set('api_key', api_key);
+    if (this.api_key != null) {
+      params = params.set('api_key', this.api_key);
     } else {
       params = params;
     }
@@ -56,14 +80,21 @@ export class AdverseEventsService {
         share()
       );
   }
+
   maxDate;
 
   ngOnInit() {
+    this.loadResults_1();
     this.maxDate = new Date();
-    this.maxDate.setFullYear(this.maxDate.getFullYear() - 18);
+    this.maxDate.setFullYear(this.maxDate.getFullYear() - 0);
   }
 
-  onSubmit(form: NgForm) {
-    console.log(form);
-  }
+  saleData = [
+    { 'name': "NAUSEA", 'value': 105000 },
+    { 'name': "Laptop", 'value': 55000 },
+    { name: "AC", value: 15000 },
+    { name: "Headset", value: 150000 },
+    { name: "Fridge", value: 20000 }
+  ];
+  
 }
