@@ -15,8 +15,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { MatTabsModule } from '@angular/material/tabs';
 
-import {MatTableModule} from '@angular/material/table';
-
 @NgModule({
   imports: [
     MatButtonModule,
@@ -27,7 +25,6 @@ import {MatTableModule} from '@angular/material/table';
     MatNativeDateModule,
     MatCheckboxModule,
     MatTabsModule,
-    MatTableModule,
   ],
   exports: [
     MatButtonModule,
@@ -38,7 +35,6 @@ import {MatTableModule} from '@angular/material/table';
     MatNativeDateModule,
     MatCheckboxModule,
     MatTabsModule,
-    MatTableModule,
   ],
 })
 export class MaterialModule {}

@@ -1,22 +1,12 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 /* import { NgForm } from '@angular/forms'; */
-import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import {
-  expand,
-  scan,
-  map,
-  share,
-  shareReplay,
-  debounceTime,
-} from 'rxjs/operators';
+import { map, share } from 'rxjs/operators';
 /*
   https://rxjs.dev/api/operators
     map: Applies a given project function to each value emitted by the source Observable, and emits the resulting values as an Observable.
 */
-
-import { flatten, uniq } from 'lodash';
 
 import { AdverseEventsService } from '../drug_api_endpoints/adverse_events.service';
 
@@ -69,7 +59,10 @@ export class AdverseEventsComponent implements OnInit {
     );
   }
 
-  view: any[] = [1280, 640];
+  colorScheme = {
+    domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5'],
+  };
+
   showXAxis = true;
   showYAxis = true;
   gradient = false;
@@ -78,4 +71,9 @@ export class AdverseEventsComponent implements OnInit {
   xAxisLabel = 'Reaction medical';
   showYAxisLabel = true;
   yAxisLabel = 'Number of cases';
+
+  new_gradient: boolean = true;
+  showLabels: boolean = true;
+  isDoughnut: boolean = false;
+  legendPosition: string = 'below';
 }
